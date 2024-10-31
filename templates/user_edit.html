@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>ユーザー編集</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='base-style.css') }}">
+</head>
+<body>
+    <h1>ユーザーを編集</h1>
+    <ul class="breadcrumb">
+        <li><a href="{{ url_for('index') }}">HOME</a></li>
+        <li><a href="{{ url_for('user.list') }}">ユーザー一覧</a></li>
+        <li>ユーザー編集</li>
+    </ul>
+
+    <form action="{{ url_for('user.edit', user_id=user.id) }}" method="post">
+        <label>名前: <input type="text" name="name" value="{{ user.name }}" required></label><br>
+        <label>年齢: <input type="number" name="age" value="{{ user.age }}" required></label><br>
+        <button type="submit">保存</button>
+    </form>
+</body>
+</html>

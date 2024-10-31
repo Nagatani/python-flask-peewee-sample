@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>データ一覧</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='base-style.css') }}">
+</head>
+<body>
+    <h1>{{ title }}</h1>
+    <ul class="breadcrumb">
+        <li><a href="{{ url_for('index') }}">HOME</a></li>
+        <li><a href="{{ url_for('product.list') }}">製品一覧</a></li>
+
+    </ul>
+    <a href="{{ url_for('product.add') }}">新規製品追加</a>
+    <table>
+        <thead>
+            <tr>
+                <th>&nbsp;</th>
+                <th>製品名</th>
+                <th>価格</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in items %}
+            <tr>
+                <td><a href="{{ url_for('product.edit', product_id=product.id) }}">編集</a></td>
+                <td>{{ product.name }}</td>
+                <td>{{ product.price }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

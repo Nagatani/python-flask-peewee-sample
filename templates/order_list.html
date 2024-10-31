@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>データ一覧</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='base-style.css') }}">
+</head>
+<body>
+    <h1>{{ title }}</h1>
+    <ul class="breadcrumb">
+        <li><a href="{{ url_for('index') }}">HOME</a></li>
+        <li><a href="{{ url_for('order.list') }}">注文一覧</a></li>
+    </ul>
+
+    <a href="{{ url_for('order.add') }}">新規注文追加</a>
+    <table>
+        <thead>
+            <tr>
+                <th>&nbsp;</th>
+                <th>ユーザー</th>
+                <th>製品</th>
+                <th>注文日</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in items %}
+            <tr>
+                <td><a href="{{ url_for('order.edit', order_id=order.id) }}">編集</a></td>
+                <td>{{ order.user.name }}</td>
+                <td>{{ order.product.name }}</td>
+                <td>{{ order.order_date }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
