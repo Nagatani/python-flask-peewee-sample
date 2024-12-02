@@ -1,6 +1,10 @@
 # python-flask-peewee-sample
 講義用サンプルWebアプリ
 
+## sample
+
+https://python-flask-peewee-sample.onrender.com/
+
 ## require
 
 ```bash
