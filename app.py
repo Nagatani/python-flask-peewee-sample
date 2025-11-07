@@ -20,7 +20,7 @@ for blueprint in blueprints:
 def index():
     return render_template('index.html')
 
-@app.route('/logs_peewee', methods=['GET'])
+@app.route('/logs/', methods=['GET'])
 def get_logs_peewee():
     """記録されたログを確認するためのエンドポイント"""
     # Peeweeの .select() を使用
