@@ -3,7 +3,7 @@
 
 ## sample
 
-https://python-flask-peewee-sample.onrender.com/
+[https://python-flask-peewee-sample.onrender.com/](https://python-flask-peewee-sample.vercel.app/)
 
 ## require
 
