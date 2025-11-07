@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for
-from models import User
+from models import User, log_audit_peewee
 
 # Blueprintの作成
 user_bp = Blueprint('user', __name__, url_prefix='/users')
@@ -20,7 +20,8 @@ def add():
     if request.method == 'POST':
         name = request.form['name']
         age = request.form['age']
-        User.create(name=name, age=age)
+        create_data = User.create(name=name, age=age)
+        log_audit_peewee(action="UPDATE_ORDER", target_object=create_data)
         return redirect(url_for('user.list'))
     
     return render_template('user_add.html')
@@ -35,7 +36,8 @@ def edit(user_id):
     if request.method == 'POST':
         user.name = request.form['name']
         user.age = request.form['age']
-        user.save()
+        edit_data = user.save()
+        log_audit_peewee(action="UPDATE_ORDER", target_object=edit_data)
         return redirect(url_for('user.list'))
 
     return render_template('user_edit.html', user=user)

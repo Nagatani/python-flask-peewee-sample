@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for
-from models import Product
+from models import Product, log_audit_peewee
 
 # Blueprintの作成
 product_bp = Blueprint('product', __name__, url_prefix='/products')
@@ -18,7 +18,8 @@ def add():
     if request.method == 'POST':
         name = request.form['name']
         price = request.form['price']
-        Product.create(name=name, price=price)
+        create_data = Product.create(name=name, price=price)
+        log_audit_peewee(action="UPDATE_ORDER", target_object=create_data)
         return redirect(url_for('product.list'))
     
     return render_template('product_add.html')
@@ -33,7 +34,8 @@ def edit(product_id):
     if request.method == 'POST':
         product.name = request.form['name']
         product.price = request.form['price']
-        product.save()
+        edit_data = product.save()
+        log_audit_peewee(action="UPDATE_ORDER", target_object=edit_data)
         return redirect(url_for('product.list'))
 
     return render_template('product_edit.html', product=product)
