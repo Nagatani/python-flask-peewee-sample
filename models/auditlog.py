@@ -1,5 +1,5 @@
 from datetime import datetime
-from peewee import Model, CharField, DateTimeField, IntegerField
+from peewee import Model, CharField, DateTimeField, IntegerField, UUIDField
 from .db import db
 
 
@@ -16,6 +16,7 @@ class AuditLog(Model):
     action = CharField(max_length=100)
     target_model = CharField(max_length=100, null=True)
     target_id = IntegerField(null=True)
+    client_uuid = UUIDField(null=True, index=True, help_text="クライアント識別CookieのUUID")
     
     class Meta:
         database = db
