@@ -2,15 +2,15 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>データ一覧</title>
+    <title>注文管理システム</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='base-style.css') }}">
 </head>
 <body>
-    <h1>index</h1>
+    <h1>注文管理システム</h1>
     <ul>
-      <li><a href="{{ url_for('user.list') }}">ユーザーリスト</a></li>
-      <li><a href="{{ url_for('product.list') }}">製品リスト</a></li>
-      <li><a href="{{ url_for('order.list') }}">注文リスト</a></li>
+      <li><a href="{{ url_for('user.list') }}">ユーザー（顧客）</a></li>
+      <li><a href="{{ url_for('product.list') }}">製品</a></li>
+      <li><a href="{{ url_for('order.list') }}">注文</a></li>
     </ul>
 </body>
 </html>
